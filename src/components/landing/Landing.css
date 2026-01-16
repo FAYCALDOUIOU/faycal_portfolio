@@ -1,0 +1,280 @@
+/* Landing.css */
+*{
+    margin: 0;
+}
+/* header */
+.header{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #fff;
+}
+
+/* hero */
+.hero{
+  --header-h: 90px;
+  --dx: 0px; /* for laptop cursor (optional) */
+  --dy: 0px;
+
+  min-height: calc(100svh - var(--header-h));
+  min-height: calc(100vh - var(--header-h));
+  padding: 18px 16px 64px;
+
+  display: grid;
+  place-items: center;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* you can keep the <div class="hero__bg" /> in JSX, but hide it */
+.hero__bg{ display:none; }
+
+/* content */
+.hero__content{
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 950px;
+
+  /* small padding so blob has room around text */
+  padding: 10px 12px 18px;
+}
+
+/* ✅ Blob ONLY behind the content */
+.hero__content::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform: translate(-50%, -50%);
+  z-index:-1;
+  pointer-events:none;
+
+  /* size of blob area behind text */
+  width: min(900px, 96vw);
+  height: 520px;
+
+  border-radius: 999px;
+  opacity: 0.95;
+  filter: blur(44px);
+
+  background:
+    radial-gradient(closest-side at 22% 45%, rgba(255, 122, 176, 0.95), transparent 62%),
+    radial-gradient(closest-side at 50% 55%, rgba(150, 95, 255, 0.80), transparent 64%),
+    radial-gradient(closest-side at 78% 45%, rgba(120, 235, 255, 0.95), transparent 62%);
+
+  -webkit-mask-image: radial-gradient(circle at center, #000 62%, transparent 88%);
+  mask-image: radial-gradient(circle at center, #000 62%, transparent 88%);
+
+  /* mobile/tablet auto motion */
+  animation: blobDrift 5.2s ease-in-out infinite;
+}
+
+/* auto motion (mobile/tablet) */
+@keyframes blobDrift{
+  0%   { transform: translate(-50%, -50%) translate(-40px, -18px) scale(1.04) rotate(-3deg); }
+  50%  { transform: translate(-50%, -50%) translate( 40px,  18px) scale(1.07) rotate( 3deg); }
+  100% { transform: translate(-50%, -50%) translate(-40px, -18px) scale(1.04) rotate(-3deg); }
+}
+
+/* text styles */
+.hero__kicker{
+  font-size: 20px;
+  font-weight: 700;
+  color:#151050;
+  margin:0 0 14px;
+}
+
+.hero__title{
+  margin:0 0 14px;
+  line-height: 1.08;
+  font-weight: 900;
+  color:#120b4a;
+  font-size: clamp(40px, 6vw, 96px);
+}
+.hero__title span{ display:block; }
+
+.hero__subtitle{
+  font-size: clamp(16px, 2.2vw, 28px);
+  font-weight: 600;
+  color: rgba(18, 11, 74, 0.45);
+  margin:0 0 18px;
+}
+
+/* button */
+.hero__btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 14px 26px;
+  border-radius: 18px;
+  background:#120b4a;
+  color:#fff;
+  text-decoration:none;
+  font-weight: 800;
+  box-shadow: 0 14px 30px rgba(18, 11, 74, 0.18);
+  transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+}
+
+.hero__btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(18, 11, 74, 0.22);
+  opacity: 0.96;
+}
+
+/* ✅ Mobile: perfect spacing + blob behind text */
+@media (max-width: 480px){
+  .hero{
+    padding: 14px 16px 56px; /* tighter and clean */
+  }
+
+  .hero__content{
+    padding: 8px 10px 16px;
+  }
+
+  .hero__content::before{
+    width: min(740px, 110vw);
+    height: 460px;
+    top: 52%;               /* keeps it behind title+subtitle+button */
+    filter: blur(40px);
+    animation-duration: 4.6s;
+  }
+}
+
+/* ✅ Laptop/Desktop: move with cursor (no auto drift)
+   You just need to set --dx and --dy on .hero from JS. */
+@media (hover: hover) and (pointer: fine){
+  .hero__content::before{
+    animation: none; /* stop auto */
+    transform: translate(-50%, -50%) translate(var(--dx), var(--dy)) scale(1.06);
+    transition: transform 80ms ease-out;
+  }
+}
+
+/* accessibility */
+@media (prefers-reduced-motion: reduce){
+  .hero__content::before{ animation:none !important; transition:none !important; }
+}
+/* ✅ Mobile: center the whole block (text + logos) */
+@media (max-width: 480px){
+  .hero{
+    min-height: calc(100svh - var(--header-h));
+    min-height: calc(100vh - var(--header-h));
+    padding: 14px 16px;
+    display: grid;
+    place-items: center;
+  }
+
+  /* stack text + logos and center as one unit */
+  .hero__content{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* bring logos closer & remove extra gap */
+  .logos{
+    margin-top: 14px;
+    margin-bottom: 0;
+  }
+}/* ✅ Mobile: center the whole block (text + logos) */
+@media (max-width: 480px){
+  .hero{
+    min-height: calc(100svh - var(--header-h));
+    min-height: calc(100vh - var(--header-h));
+    padding: 14px 16px;
+    display: grid;
+    place-items: center;
+  }
+
+  /* stack text + logos and center as one unit */
+  .hero__content{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* bring logos closer & remove extra gap */
+  .logos{
+    margin-top: 14px;
+    margin-bottom: 0;
+  }
+}
+.hero__logosWrap{
+  margin-top: 16px;   /* space between button and logos */
+}
+
+/* mobile tweak */
+@media (max-width: 480px){
+  .hero__logosWrap{
+    margin-top: 12px;
+  }
+}/* ✅ Mobile: put logos in the middle empty area */
+@media (max-width: 480px){
+  .hero{
+    min-height: calc(100svh - var(--header-h));
+    min-height: calc(100vh - var(--header-h));
+    padding: 14px 16px 20px;
+
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* content / empty area / bottom */
+    align-items: start;
+  }
+
+  .hero__content{
+    grid-row: 1;
+    margin: 0;
+  }
+
+  /* logos sit in the middle */
+  .hero__logosSlot{
+    grid-row: 2;
+    display: flex;
+    align-items: center;   /* vertical center of the empty area */
+    justify-content: center;
+  }
+
+  /* remove default margin so it doesn't push down */
+  .logos{
+    margin: 0;
+  }
+}
+/* ✅ Mobile: center ALL hero content (text + button + logos) */
+@media (max-width: 480px){
+  .hero{
+    min-height: calc(100svh - var(--header-h));
+    min-height: calc(100vh - var(--header-h));
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* vertical center */
+    align-items: center;     /* horizontal center */
+    text-align: center;
+  }
+
+  .hero__content{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* if you wrapped logos */
+  .hero__logosWrap,
+  .hero__logosSlot{
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* remove default margins from logos component */
+  .logos{
+    margin: 0;
+  }
+}
+

@@ -1,0 +1,100 @@
+.logos{
+  width: min(980px, 92vw);
+  margin: 26px auto 0;
+  position: relative;
+}
+
+.logos__fade{
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:110px;
+  z-index:2;
+  pointer-events:none;
+}
+.logos__fade--left{
+  left:0;
+  background: linear-gradient(to right, #fff, rgba(255,255,255,0));
+}
+.logos__fade--right{
+  right:0;
+  background: linear-gradient(to left, #fff, rgba(255,255,255,0));
+}
+
+.logos__viewport{
+  overflow:hidden;
+  border-radius: 18px;
+  position: relative;
+}
+
+.logos__track{
+  display:flex;
+  align-items:center;
+  gap: 44px;
+  padding: 14px 22px;
+  width:max-content;
+  animation: logosMove 18s linear infinite;
+}
+
+.logos__item{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-width: 140px;
+}
+
+/* default = soft grey */
+.logos__item img{
+  height: 34px;
+  width:auto;
+  opacity: 0.35;
+  filter: grayscale(1);
+  transition: filter .25s ease, opacity .25s ease, transform .25s ease;
+}
+
+/* ✅ center logo becomes color (JS active class) */
+.logos__item.is-active img{
+  opacity: 1;
+  filter: grayscale(0);
+  transform: translateY(-2px);
+}
+
+/* optional hover */
+.logos__item:hover img{
+  opacity: 1;
+  filter: grayscale(0);
+  transform: translateY(-2px);
+}
+
+/* movement */
+@keyframes logosMove{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-50%); }
+}
+
+@media (max-width: 480px){
+  .logos__track{ gap: 26px; padding: 12px 14px; animation-duration: 16s; }
+  .logos__item{ min-width: 110px; }
+  .logos__item img{ height: 28px; }
+  .logos__fade{ width: 70px; }
+}
+/* bigger logos (desktop) */
+.logos__item img{
+  height: 44px;   /* was ~34px */
+  width: auto;
+  opacity: 0.35;
+  filter: grayscale(1);
+  transition: filter .25s ease, opacity .25s ease, transform .25s ease;
+}
+
+/* bigger logos (mobile) */
+@media (max-width: 480px){
+  .logos__item img{
+    height: 36px; /* was ~28px */
+  }
+
+  /* optional: a bit more space between logos */
+  .logos__track{
+    gap: 30px;
+  }
+}
