@@ -1,0 +1,102 @@
+/* AboutUs.css */
+
+.about{
+  background:#fff;
+  padding: 110px 20px;
+}
+
+.about__inner{
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* icons row */
+.about__icons{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap: 44px;
+  margin-bottom: 26px;
+}
+
+/* icon wrapper */
+.about__icon{
+  display:grid;
+  place-items:center;
+  width: 44px;
+  height: 44px;
+
+  background: transparent !important;
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+/* ✅ stop any global svg rules */
+.about__icon svg,
+.about__icon path{
+  fill: none;
+  stroke: none;
+}
+
+/* code + star (outline icons) */
+.about__icon--code svg,
+.about__icon--star svg{
+  color:#120b4a;
+}
+
+/* make outlines use stroke color */
+.about__icon--code svg *,
+.about__icon--star svg *{
+  stroke: currentColor !important;
+  fill: none !important;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ✅ heart filled pink */
+.about__icon--heart{
+  color:#ec4899 !important;
+}
+
+.about__icon--heart svg path{
+  fill: currentColor !important;
+  stroke: none !important;
+}
+
+.about__title{
+  margin: 0 0 18px;
+  font-size: clamp(34px, 4vw, 54px);
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  color:#120b4a;
+}
+
+.about__subtitle{
+  margin: 0 auto;
+  max-width: 760px;
+  font-size: clamp(16px, 1.9vw, 22px);
+  line-height: 1.7;
+  color: rgba(18, 11, 74, 0.38);
+  font-weight: 600;
+}
+
+/* mobile */
+@media (max-width: 480px){
+  .about{
+    padding: 80px 16px;
+  }
+  .about__icons{
+    gap: 28px;
+    margin-bottom: 18px;
+  }
+  .about__icon{
+    width: 40px;
+    height: 40px;
+  }
+}
