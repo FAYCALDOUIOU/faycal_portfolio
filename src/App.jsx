@@ -3,6 +3,7 @@ import NavBar from './components/Navbar/Navbar'
 import Landing from './components/landing/Landing'
 import AboutUs from './components/About Us/AboutUs'
 import Services from './components/OurService/Services'
+import Footer from './components/footer/Footer'
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       < Landing />
       <AboutUs />
       <Services/>
+      <Footer />
     </>
   )
 }
