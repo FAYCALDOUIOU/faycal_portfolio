@@ -29,7 +29,7 @@ export default function AboutUs() {
                     </span>
                 </div>
 
-                <h2 className="about__title">About Us</h2>
+                <h2 className="about__title">ABOUT US</h2>
 
                 <p className="about__subtitle">
                     We help brands grow with modern design, smart strategy, and clean development —
