@@ -4,15 +4,17 @@ import Landing from './components/landing/Landing'
 import AboutUs from './components/About Us/AboutUs'
 import Services from './components/OurService/Services'
 import Footer from './components/footer/Footer'
+import Pricing from './components/Pricing/Pricing'
 
 
 function App() {
   return (
     <>
       <NavBar />
-      < Landing />
+      <Landing />
       <AboutUs />
-      <Services/>
+      <Services />
+      <Pricing />
       <Footer />
     </>
   )
