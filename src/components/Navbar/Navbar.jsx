@@ -14,10 +14,10 @@ function NavBar() {
 
         <nav className={`header__nav ${open ? "is-open" : ""}`}>
           <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#learn">ABOUT US</a></li>
-            <li><a href="#tech">Our Services</a></li>
-            <li><a href="#contact">Pricing</a></li>
+            <li><a href="#Home">Home</a></li>
+            <li><a href="#AboutUs ">ABOUT US</a></li>
+            <li><a href="#Services">Services</a></li>
+            <li><a href="#Pricing">Pricing</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>

@@ -7,33 +7,34 @@ export default function Footer() {
   return (
     <footer className="footer" aria-label="Footer">
       <div className="footer__inner">
-        {/* Row 1 */}
+        {/* Top Row */}
         <div className="footer__row footer__row--top">
           <a className="footer__brand" href="#home" aria-label="Go to home">
             <img className="footer__logo" src={logo} alt="Logo" />
           </a>
 
-          <div className="footer__copy">© {year} FAYCAL DOUIOU | BRANDING. All rights reserved.</div>
+          <div className="footer__copy">
+            © {year} FAYCAL DOUIOU | BRANDING. All rights reserved.
+          </div>
 
-          {/* ✅ your nav */}
+          {/* ✅ Use your real ids */}
           <nav className="footer__nav" aria-label="Footer navigation">
             <ul>
-              <li><a href="#HOME">Home</a></li>
-              <li><a href="#ABOUT">ABOUT US</a></li>
-              <li><a href="#SERVICE">Services</a></li>
-              <li><a href="#PRICING">Pricing</a></li>
-              <li><a href="#CONTACT">Contact us</a></li>
+              <li><a href="/">HOME</a></li>
+              <li><a href="#learn">ABOUT US</a></li>
+              <li><a href="#tech">SERVICES</a></li>
+              <li><a href="#pricing">PRICING</a></li>
+              <li><a href="#contact">CONTACT US</a></li>
             </ul>
           </nav>
         </div>
 
         <div className="footer__divider" />
 
-        {/* Row 2 */}
+        {/* Bottom Row */}
         <div className="footer__row footer__row--bottom">
           <p className="footer__desc">
-            Startup Framework contains components and complex blocks which can easily be integrated
-            into almost any design.
+            From a starter brand kit to a full premium experience — everything you need to launch a strong visual identity.
           </p>
 
           <div className="footer__social" aria-label="Social links">

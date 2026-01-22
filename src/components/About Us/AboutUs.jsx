@@ -10,7 +10,7 @@ export default function AboutUs() {
   };
 
   return (
-    <section className="about" id="learn" aria-label="About us">
+    <section className="about" id="AboutUs" aria-label="About us">
       <div className="about__inner">
         <div className="about__icons" aria-hidden="true">
           <span className="about__icon about__icon--code">

@@ -16,7 +16,6 @@ const PLANS = [
       { label: "Main logo + variations", included: true },
       { label: "Color palette & fonts", included: true },
       { label: "Basic brand board (visual identity summary)", included: true },
-
       { label: "Brand pattern / texture", included: false },
       { label: "Social media profile kit (profile, highlights, 3 templates)", included: false },
       { label: "Brand guideline PDF", included: false },
@@ -25,12 +24,10 @@ const PLANS = [
       { label: "Brand launch presentation", included: false },
     ],
   },
-
   {
     key: "pro",
     title: "Professional Brand Identity",
     subtitle: "For growing businesses that want a complete and consistent brand system.",
-    // ✅ promo
     price: "3,500",
     priceWas: "5,000",
     currency: "MAD",
@@ -44,19 +41,16 @@ const PLANS = [
       { label: "Brand pattern / texture", included: true },
       { label: "Social media profile kit (profile, highlights, 3 templates)", included: true },
       { label: "Brand guideline PDF", included: true },
-
       { label: "Brand strategy session (positioning, voice, story)", included: false },
       { label: "Social media templates (10–15)", included: false },
       { label: "Stationery (card, letterhead, envelope)", included: false },
       { label: "Brand launch presentation", included: false },
     ],
   },
-
   {
     key: "premium",
     title: "Premium Brand Experience",
     subtitle: "For businesses ready to invest in full strategy and visuals.",
-    // ✅ promo
     price: "7,000",
     priceWas: "10,000",
     currency: "MAD",
@@ -70,7 +64,6 @@ const PLANS = [
       { label: "Social media templates (10–15)", included: true },
       { label: "Stationery (card, letterhead, envelope)", included: true },
       { label: "Brand launch presentation", included: true },
-
       { label: "Color palette + typography", included: true },
       { label: "Brand pattern / texture", included: true },
       { label: "Brand guideline PDF", included: true },
@@ -78,12 +71,24 @@ const PLANS = [
   },
 ];
 
+const toNumber = (v) => Number(String(v || "").replace(/[^\d]/g, "")) || 0;
 
-export default function Pricing() {
+export default function Pricing({ onCheckout = () => {} }) {
+  const handleCheckout = (plan) => {
+    onCheckout({
+      id: plan.key,
+      title: plan.title,
+      currency: plan.currency,
+      delivery: plan.delivery,
+      promoPrice: toNumber(plan.price),
+      oldPrice: toNumber(plan.priceWas),
+      features: plan.features,
+    });
+  };
+
   return (
     <section className="pricing" id="pricing" aria-label="Plans and Pricing">
       <div className="pricing__bg" aria-hidden="true" />
-
       <div className="pricing__inner">
         <h2 className="pricing__title">Plans &amp; Pricing</h2>
         <p className="pricing__lead">
@@ -92,29 +97,20 @@ export default function Pricing() {
 
         <div className="pricing__grid">
           {PLANS.map((plan) => (
-            <article
-              key={plan.key}
-              className={`pricing__card ${plan.featured ? "is-featured" : ""}`}
-            >
+            <article key={plan.key} className={`pricing__card ${plan.featured ? "is-featured" : ""}`}>
               <header className="pricing__cardHeader">
                 {plan.badge && <span className="pricing__badge">{plan.badge}</span>}
-
                 <h3 className="pricing__plan">{plan.title}</h3>
                 <p className="pricing__desc">{plan.subtitle}</p>
 
                 <div className="pricing__priceRow">
                   {plan.priceWas && (
                     <span className="pricing__priceWas">
-                      {plan.priceWas}{" "}
-                      <span className="pricing__currencySmall">{plan.currency}</span>
+                      {plan.priceWas} <span className="pricing__currencySmall">{plan.currency}</span>
                     </span>
                   )}
 
-                  <span
-                    className={`pricing__price ${plan.priceWas ? "is-promo" : ""} ${
-                      String(plan.price).includes("–") ? "is-range" : ""
-                    }`}
-                  >
+                  <span className={`pricing__price ${plan.priceWas ? "is-promo" : ""}`}>
                     {plan.price}
                   </span>
 
@@ -126,24 +122,20 @@ export default function Pricing() {
 
               <ul className="pricing__features">
                 {plan.features.map((f, idx) => (
-                  <li
-                    key={`${plan.key}-${idx}`}
-                    className={`pricing__feature ${f.included ? "is-on" : "is-off"}`}
-                  >
-                    <span className="pricing__check" aria-hidden="true">
-                      {f.included ? "✓" : "•"}
-                    </span>
+                  <li key={`${plan.key}-${idx}`} className={`pricing__feature ${f.included ? "is-on" : "is-off"}`}>
+                    <span className="pricing__check" aria-hidden="true">{f.included ? "✓" : "•"}</span>
                     <span className="pricing__featureText">{f.label}</span>
                   </li>
                 ))}
               </ul>
 
-              <a
+              <button
+                type="button"
                 className={`pricing__cta ${plan.featured ? "is-featured" : ""}`}
-                href="#contact"
+                onClick={() => handleCheckout(plan)}
               >
                 {plan.cta}
-              </a>
+              </button>
             </article>
           ))}
         </div>
