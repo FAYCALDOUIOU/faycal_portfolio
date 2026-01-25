@@ -87,7 +87,7 @@ export default function Pricing({ onCheckout = () => {} }) {
   };
 
   return (
-    <section className="pricing" id="pricing" aria-label="Plans and Pricing">
+    <section className="pricing" id="Pricing" aria-label="Plans and Pricing">
       <div className="pricing__bg" aria-hidden="true" />
       <div className="pricing__inner">
         <h2 className="pricing__title">Plans &amp; Pricing</h2>

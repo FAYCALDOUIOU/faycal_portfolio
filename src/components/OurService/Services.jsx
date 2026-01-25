@@ -106,7 +106,7 @@ export default function Services() {
   ];
 
   return (
-    <section className="services" id="tech">
+    <section className="services" id="Services" aria-label="Services">
       <div className="services__inner">
         <h2 className="services__title">Our Services</h2>
         <p className="services__subtitle">
